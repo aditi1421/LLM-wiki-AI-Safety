@@ -4,8 +4,8 @@ title: Economic Displacement by AI
 aliases: [AI labor displacement, technological unemployment from AI, AI job displacement]
 created: 2026-04-10
 updated: 2026-04-10
-sources: [drago-2025-intelligence-curse]
-related: [intelligence-curse, resource-curse]
+sources: [drago-2025-intelligence-curse, davidson-2023-compute-centric-takeoff]
+related: [intelligence-curse, resource-curse, ai-takeoff-speeds, compute-centric-framework]
 status: draft
 ---
 
@@ -31,6 +31,10 @@ Drago ([[drago-2025-intelligence-curse]]) draws a critical distinction:
 ## Current Evidence
 
 Pre-AGI systems are already shrinking analyst classes, changing hiring strategies, and triggering layoffs. These systems will only improve over time.
+
+## Speed of Displacement
+
+Davidson ([[davidson-2023-compute-centric-takeoff]]) quantifies the timeline: ~50% probability that AI goes from automating 20% to 100% of cognitive tasks in <3 years. At 20%-AI, the economic value of automation is ~$10tr/year — enough to trigger massive investment surges that accelerate the remaining displacement. This means the window for adapting economic structures may be very narrow.
 
 ## The Deeper Problem
 

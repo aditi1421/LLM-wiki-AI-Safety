@@ -1,5 +1,18 @@
 import type { Metadata } from 'next';
+import { Source_Serif_4, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
+
+const sourceSerif = Source_Serif_4({
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'AI Safety Wiki',
@@ -12,27 +25,40 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="bg-zinc-950 text-zinc-100 min-h-screen antialiased">
-        <nav className="border-b border-zinc-800 px-6 py-4">
-          <div className="max-w-5xl mx-auto flex items-center gap-6">
-            <a href="/" className="font-mono text-lg font-bold tracking-tight">AI Safety Wiki</a>
-            <div className="flex gap-4 text-sm text-zinc-400">
-              <a href="/graph" className="hover:text-zinc-100 transition-colors">Graph</a>
-              <a href="/index-page" className="hover:text-zinc-100 transition-colors">Index</a>
-              <a href="/search" className="hover:text-zinc-100 transition-colors">Search</a>
+    <html lang="en" className={`${sourceSerif.variable} ${jetbrainsMono.variable}`}>
+      <body>
+        <nav style={{ borderBottom: '1px solid var(--color-border)', padding: '1rem 1.5rem' }}>
+          <div style={{ maxWidth: '72rem', margin: '0 auto', display: 'flex', alignItems: 'center', gap: '2rem' }}>
+            <a href="/" style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--color-text)', textDecoration: 'none' }}>
+              AI Safety Wiki
+            </a>
+            <div style={{ display: 'flex', gap: '1.5rem' }}>
+              <a href="/graph" className="nav-link">Graph</a>
+              <a href="/index-page" className="nav-link">Index</a>
+              <a href="/search" className="nav-link">Search</a>
             </div>
-            <div className="ml-auto">
-              <a href="https://github.com/aditi1421/LLM-wiki-AI-Safety" target="_blank" rel="noopener" className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors">GitHub</a>
+            <div style={{ marginLeft: 'auto' }}>
+              <a
+                href="https://github.com/aditi1421/LLM-wiki-AI-Safety"
+                target="_blank"
+                rel="noopener"
+                className="nav-link"
+              >
+                GitHub
+              </a>
             </div>
           </div>
         </nav>
-        <main className="max-w-5xl mx-auto px-6 py-8">
+        <main>
           {children}
         </main>
-        <footer className="border-t border-zinc-800 px-6 py-6 mt-16">
-          <div className="max-w-5xl mx-auto text-center text-sm text-zinc-600">
-            Built with the <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" className="underline hover:text-zinc-400">LLM Wiki</a> pattern
+        <footer style={{ borderTop: '1px solid var(--color-border)', padding: '2rem 1.5rem', marginTop: '4rem' }}>
+          <div style={{ maxWidth: '72rem', margin: '0 auto', textAlign: 'center', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.04em', color: 'var(--color-text-dim)' }}>
+            Built with the{' '}
+            <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" style={{ color: 'var(--color-text-muted)', textDecoration: 'underline' }}>
+              LLM Wiki
+            </a>{' '}
+            pattern by Karpathy
           </div>
         </footer>
       </body>

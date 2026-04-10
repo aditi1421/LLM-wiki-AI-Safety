@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 
 interface GraphNode {
   id: string;
@@ -25,19 +25,16 @@ interface GraphData {
 }
 
 const TYPE_COLORS: Record<string, string> = {
-  concept: '#3b82f6',   // blue
-  entity: '#a855f7',    // purple
-  source: '#22c55e',    // green
-  debate: '#f97316',    // orange
-  synthesis: '#ec4899', // pink
-  map: '#06b6d4',       // cyan
+  concept: '#7c8aff',
+  entity: '#c084fc',
+  source: '#4ade80',
+  debate: '#fb923c',
+  synthesis: '#f472b6',
+  map: '#22d3ee',
 };
 
-export default function Graph({ data }: { data: GraphData }) {
+export default function Graph({ data, height = 600, hero = false }: { data: GraphData; height?: number; hero?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [hoveredNode, setHoveredNode] = useState<GraphNode | null>(null);
-  const nodesRef = useRef<GraphNode[]>([]);
-  const edgesRef = useRef<GraphEdge[]>([]);
   const animRef = useRef<number>(0);
 
   useEffect(() => {
@@ -46,17 +43,31 @@ export default function Graph({ data }: { data: GraphData }) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Initialize node positions in a circle
-    const nodes = data.nodes.map((n, i) => ({
+    let w = 0;
+    let h = 0;
+
+    function resize() {
+      const parent = canvas!.parentElement!;
+      const dpr = window.devicePixelRatio || 1;
+      w = parent.clientWidth;
+      h = height;
+      canvas!.width = w * dpr;
+      canvas!.height = h * dpr;
+      canvas!.style.width = w + 'px';
+      canvas!.style.height = h + 'px';
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+
+    // Initialize nodes spread across canvas
+    const nodes: GraphNode[] = data.nodes.map((n, i) => ({
       ...n,
-      x: 400 + 250 * Math.cos((2 * Math.PI * i) / data.nodes.length),
-      y: 300 + 250 * Math.sin((2 * Math.PI * i) / data.nodes.length),
+      x: w / 2 + (w * 0.35) * Math.cos((2 * Math.PI * i) / data.nodes.length),
+      y: h / 2 + (h * 0.35) * Math.sin((2 * Math.PI * i) / data.nodes.length),
       vx: 0,
       vy: 0,
     }));
-    nodesRef.current = nodes;
 
-    // Resolve edges to node references
     const nodeMap = new Map(nodes.map(n => [n.id, n]));
     const edges = data.edges
       .map(e => ({
@@ -64,17 +75,20 @@ export default function Graph({ data }: { data: GraphData }) {
         target: nodeMap.get(typeof e.target === 'string' ? e.target : (e.target as GraphNode).id),
       }))
       .filter(e => e.source && e.target) as { source: GraphNode; target: GraphNode }[];
-    edgesRef.current = edges;
 
-    // Simple force simulation
+    let currentHovered: GraphNode | null = null;
+    let settled = false;
+    let tick = 0;
+
     function simulate() {
-      const alpha = 0.1;
-      const repulsion = 5000;
-      const attraction = 0.005;
-      const centerX = canvas!.width / 2;
-      const centerY = canvas!.height / 2;
+      if (settled) return;
+      tick++;
+      const alpha = Math.max(0.01, 0.3 * Math.pow(0.99, tick));
+      if (alpha < 0.015) settled = true;
 
-      // Repulsion between all nodes
+      const repulsion = 8000;
+      const attraction = 0.003;
+
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[j].x! - nodes[i].x!;
@@ -90,93 +104,109 @@ export default function Graph({ data }: { data: GraphData }) {
         }
       }
 
-      // Attraction along edges
       for (const edge of edges) {
-        const s = edge.source;
-        const t = edge.target;
-        const dx = t.x! - s.x!;
-        const dy = t.y! - s.y!;
+        const dx = edge.target.x! - edge.source.x!;
+        const dy = edge.target.y! - edge.source.y!;
         const dist = Math.sqrt(dx * dx + dy * dy) || 1;
         const force = dist * attraction;
         const fx = (dx / dist) * force;
         const fy = (dy / dist) * force;
-        s.vx! += fx;
-        s.vy! += fy;
-        t.vx! -= fx;
-        t.vy! -= fy;
+        edge.source.vx! += fx;
+        edge.source.vy! += fy;
+        edge.target.vx! -= fx;
+        edge.target.vy! -= fy;
       }
 
-      // Center gravity
       for (const node of nodes) {
-        node.vx! += (centerX - node.x!) * 0.001;
-        node.vy! += (centerY - node.y!) * 0.001;
+        node.vx! += (w / 2 - node.x!) * 0.0008;
+        node.vy! += (h / 2 - node.y!) * 0.0008;
         node.x! += node.vx! * alpha;
         node.y! += node.vy! * alpha;
-        node.vx! *= 0.9; // damping
-        node.vy! *= 0.9;
+        node.vx! *= 0.85;
+        node.vy! *= 0.85;
+        // Keep in bounds
+        node.x = Math.max(60, Math.min(w - 60, node.x!));
+        node.y = Math.max(40, Math.min(h - 40, node.y!));
       }
     }
 
-    // Keep a stable ref to hoveredNode for the draw loop
-    let currentHovered: GraphNode | null = null;
-
     function draw() {
       simulate();
-      ctx!.clearRect(0, 0, canvas!.width, canvas!.height);
+      ctx!.clearRect(0, 0, w, h);
 
-      // Draw edges
-      ctx!.strokeStyle = 'rgba(255,255,255,0.08)';
-      ctx!.lineWidth = 1;
+      // Draw edges with glow
       for (const edge of edges) {
         const s = edge.source;
         const t = edge.target;
+        const isHighlighted = currentHovered && (s === currentHovered || t === currentHovered);
+
         ctx!.beginPath();
         ctx!.moveTo(s.x!, s.y!);
         ctx!.lineTo(t.x!, t.y!);
+
+        if (isHighlighted) {
+          ctx!.strokeStyle = 'rgba(124, 138, 255, 0.4)';
+          ctx!.lineWidth = 2;
+          ctx!.shadowColor = 'rgba(124, 138, 255, 0.3)';
+          ctx!.shadowBlur = 8;
+        } else {
+          ctx!.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+          ctx!.lineWidth = 1;
+          ctx!.shadowBlur = 0;
+        }
         ctx!.stroke();
+        ctx!.shadowBlur = 0;
       }
 
       // Draw nodes
       for (const node of nodes) {
         const color = TYPE_COLORS[node.type] || '#71717a';
         const isHovered = node === currentHovered;
-        const radius = isHovered ? 8 : 5;
+        const isConnected = currentHovered && edges.some(e => (e.source === currentHovered && e.target === node) || (e.target === currentHovered && e.source === node));
+        const dimmed = currentHovered && !isHovered && !isConnected;
+        const radius = isHovered ? 10 : 6;
 
+        // Glow
+        if (isHovered || isConnected) {
+          ctx!.beginPath();
+          ctx!.arc(node.x!, node.y!, radius + 8, 0, 2 * Math.PI);
+          const glow = ctx!.createRadialGradient(node.x!, node.y!, radius, node.x!, node.y!, radius + 8);
+          glow.addColorStop(0, color + '30');
+          glow.addColorStop(1, color + '00');
+          ctx!.fillStyle = glow;
+          ctx!.fill();
+        }
+
+        // Node circle
         ctx!.beginPath();
         ctx!.arc(node.x!, node.y!, radius, 0, 2 * Math.PI);
-        ctx!.fillStyle = color;
+        ctx!.fillStyle = dimmed ? color + '30' : color;
         ctx!.fill();
 
         // Label
-        ctx!.font = isHovered ? 'bold 12px monospace' : '10px monospace';
-        ctx!.fillStyle = isHovered ? '#ffffff' : 'rgba(255,255,255,0.6)';
+        const fontSize = isHovered ? 13 : 11;
+        ctx!.font = `${isHovered ? '600' : '400'} ${fontSize}px var(--font-mono), monospace`;
+        ctx!.fillStyle = dimmed ? 'rgba(255,255,255,0.15)' : isHovered ? '#ffffff' : 'rgba(255,255,255,0.55)';
         ctx!.textAlign = 'center';
-        ctx!.fillText(node.label, node.x!, node.y! - 10);
+        ctx!.textBaseline = 'bottom';
+        const label = node.label.length > 24 ? node.label.slice(0, 22) + '...' : node.label;
+        ctx!.fillText(label, node.x!, node.y! - radius - 4);
       }
 
       animRef.current = requestAnimationFrame(draw);
     }
 
-    // Handle resize
-    function resize() {
-      canvas!.width = canvas!.parentElement!.clientWidth;
-      canvas!.height = 600;
-    }
-    resize();
     window.addEventListener('resize', resize);
-
     animRef.current = requestAnimationFrame(draw);
 
-    // Handle click
     function handleClick(e: MouseEvent) {
       const rect = canvas!.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-
       for (const node of nodes) {
         const dx = node.x! - x;
         const dy = node.y! - y;
-        if (dx * dx + dy * dy < 100) {
+        if (dx * dx + dy * dy < 200) {
           window.location.href = node.url;
           return;
         }
@@ -187,19 +217,21 @@ export default function Graph({ data }: { data: GraphData }) {
       const rect = canvas!.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-
       let found: GraphNode | null = null;
       for (const node of nodes) {
         const dx = node.x! - x;
         const dy = node.y! - y;
-        if (dx * dx + dy * dy < 100) {
+        if (dx * dx + dy * dy < 200) {
           found = node;
           break;
         }
       }
       currentHovered = found;
-      setHoveredNode(found);
       canvas!.style.cursor = found ? 'pointer' : 'default';
+      // Re-trigger draw when hover state changes
+      if (!settled) return;
+      settled = false;
+      tick = Math.max(tick, 200); // keep low alpha
     }
 
     canvas.addEventListener('click', handleClick);
@@ -211,13 +243,20 @@ export default function Graph({ data }: { data: GraphData }) {
       canvas.removeEventListener('click', handleClick);
       canvas.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [data]);
+  }, [data, height]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="w-full rounded-lg border border-zinc-800 bg-zinc-900/50"
-      style={{ height: 600 }}
-    />
+    <div style={{ width: '100%', position: 'relative' }}>
+      <canvas
+        ref={canvasRef}
+        style={{
+          width: '100%',
+          height,
+          borderRadius: hero ? 0 : 8,
+          background: hero ? 'transparent' : 'var(--color-surface)',
+          border: hero ? 'none' : '1px solid var(--color-border)',
+        }}
+      />
+    </div>
   );
 }

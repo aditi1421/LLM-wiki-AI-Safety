@@ -12,15 +12,6 @@ interface SearchEntry {
   url: string;
 }
 
-const TYPE_COLORS: Record<string, string> = {
-  concept: 'bg-blue-500/20 text-blue-400',
-  entity: 'bg-purple-500/20 text-purple-400',
-  source: 'bg-green-500/20 text-green-400',
-  debate: 'bg-orange-500/20 text-orange-400',
-  synthesis: 'bg-pink-500/20 text-pink-400',
-  map: 'bg-cyan-500/20 text-cyan-400',
-};
-
 export default function SearchClient({ entries }: { entries: SearchEntry[] }) {
   const [query, setQuery] = useState('');
 
@@ -41,31 +32,32 @@ export default function SearchClient({ entries }: { entries: SearchEntry[] }) {
         type="text"
         value={query}
         onChange={e => setQuery(e.target.value)}
-        placeholder="Search pages..."
-        className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-600 font-mono focus:outline-none focus:border-zinc-600 mb-6"
+        placeholder="Search pages by title, alias, or content..."
+        className="search-input"
         autoFocus
       />
 
-      <div className="text-sm text-zinc-500 mb-4">
+      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--color-text-dim)', marginTop: '1rem', marginBottom: '1.25rem', letterSpacing: '0.04em' }}>
         {results.length} {results.length === 1 ? 'result' : 'results'}
         {query && ` for "${query}"`}
       </div>
 
-      <div className="grid gap-3">
+      <div style={{ display: 'grid', gap: '0.5rem' }}>
         {results.map(entry => (
           <a
             key={entry.slug}
             href={entry.url}
-            className="block p-4 border border-zinc-800 rounded-lg hover:border-zinc-600 transition-colors"
+            className="page-card"
+            style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '0.375rem', padding: '1rem' }}
           >
-            <div className="flex items-center gap-2 mb-1">
-              <span className={`px-2 py-0.5 rounded text-xs font-mono ${TYPE_COLORS[entry.type] || 'bg-zinc-800 text-zinc-400'}`}>
-                {entry.type}
-              </span>
-              <span className="font-medium">{entry.title}</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <span className={`badge badge-${entry.type}`}>{entry.type}</span>
+              <span style={{ fontFamily: 'var(--font-display)', fontWeight: 500 }}>{entry.title}</span>
             </div>
             {entry.excerpt && (
-              <p className="text-sm text-zinc-500 mt-1 line-clamp-2">{entry.excerpt}</p>
+              <p style={{ fontSize: '0.875rem', color: 'var(--color-text-dim)', lineHeight: 1.5, margin: 0, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                {entry.excerpt}
+              </p>
             )}
           </a>
         ))}
