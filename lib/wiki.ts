@@ -76,8 +76,8 @@ async function parseWikiFile(filePath: string, type: string): Promise<WikiPage> 
     type: data.type || type.replace(/s$/, ''), // strip trailing 's' from dir name
     title: data.title || slug.replace(/-/g, ' '),
     aliases: data.aliases || [],
-    created: data.created || '',
-    updated: data.updated || '',
+    created: data.created instanceof Date ? data.created.toISOString().slice(0, 10) : (data.created || ''),
+    updated: data.updated instanceof Date ? data.updated.toISOString().slice(0, 10) : (data.updated || ''),
     status: data.status || 'stub',
     sources: data.sources || [],
     related: data.related || [],
