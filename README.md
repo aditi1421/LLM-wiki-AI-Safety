@@ -77,7 +77,7 @@ Open this folder as a vault in Obsidian. Press `Cmd+G` for the graph view. Filte
 
 ## The Pattern
 
-This wiki implements [Andrej Karpathy's LLM Wiki concept](https://x.com/karpathy/status/1909382594482061490): instead of retrieving from raw documents at query time (RAG), the LLM **compiles** knowledge once into a persistent wiki and keeps it current. Cross-references are already there. Contradictions are already flagged. The synthesis already reflects everything ingested.
+This wiki implements [Andrej Karpathy's LLM Wiki concept](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f): instead of retrieving from raw documents at query time (RAG), the LLM **compiles** knowledge once into a persistent wiki and keeps it current. Cross-references are already there. Contradictions are already flagged. The synthesis already reflects everything ingested.
 
 The key insight: LLMs handle the tedious part of knowledge management — updating cross-references, maintaining consistency, noting contradictions across dozens of pages. The wiki stays maintained because the cost of maintenance is near zero.
 
