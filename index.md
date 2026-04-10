@@ -6,7 +6,11 @@ Master catalog of all pages. Updated by Claude on every ingest.
 
 ## Concepts
 
-_No pages yet._
+- [[intelligence-curse]] — AGI-powered actors lose incentive to invest in people (draft)
+- [[resource-curse]] — resource-rich countries underinvest in human capital (draft)
+- [[rentier-state]] — states funded by resource rents rather than citizen productivity (stub)
+- [[economic-displacement-by-ai]] — AI substituting human labor across domains (draft)
+- [[intent-alignment]] — ensuring AI goals match operator intentions (stub)
 
 ## Entities
 
@@ -14,11 +18,11 @@ _No pages yet._
 
 ## Sources
 
-_No pages yet._
+- [[drago-2025-intelligence-curse]] — "The Intelligence Curse" by Luke Drago (LessWrong, Jan 2025)
 
 ## Debates
 
-_No pages yet._
+- [[will-agi-benefit-ordinary-people]] — whether AGI wealth will be broadly shared or concentrated (draft)
 
 ## Synthesis
 
@@ -26,4 +30,4 @@ _No pages yet._
 
 ## Maps
 
-_No pages yet._
+- [[map-ai-economics]] — AI and economics: labor markets, wealth distribution, state incentives (stub)
