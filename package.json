@@ -1,0 +1,9 @@
+{
+  "name": "ai-safety-wiki",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AI safety research wiki maintained by Claude Code",
+  "dependencies": {
+    "pdf-parse": "^2.4.5"
+  }
+}
