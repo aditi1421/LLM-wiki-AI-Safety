@@ -6,7 +6,7 @@ You are maintaining a personal research wiki on AI safety. This file defines the
 
 - `raw/` — immutable source files (PDFs converted to markdown, clipped articles, transcripts, notes). NEVER modify files in raw/.
 - `wiki/` — LLM-maintained pages. You own this directory. Create, update, and interlink pages here.
-- `index.md` — master catalog of all wiki pages. Update on every ingest.
+- `wiki-index.md` — master catalog of all wiki pages. Update on every ingest.
 - `log.md` — chronological operation log. Append on every ingest, filed query, or lint pass.
 
 ## Page Types
@@ -97,7 +97,7 @@ When the user asks you to ingest a source (or drops a file in `raw/`):
    - Update any relevant **debate pages** — add the source's position to the appropriate side.
    - Update any relevant **map pages** if the source shifts the landscape.
    - For concepts mentioned but not central to this source, create `stub` pages with minimal content.
-4. **Update index.md.** Add entries for any new pages. Each entry: `- [[page-name]] — one-line summary`.
+4. **Update wiki-index.md.** Add entries for any new pages. Each entry: `- [[page-name]] — one-line summary`.
 5. **Append to log.md.** Format:
    ```
    ## [YYYY-MM-DD] ingest | Source Title
@@ -111,7 +111,7 @@ When the user asks you to ingest a source (or drops a file in `raw/`):
 
 When the user asks a question about AI safety:
 
-1. Read `index.md` to identify relevant pages.
+1. Read `wiki-index.md` to identify relevant pages.
 2. Read those pages. Follow wikilinks if deeper context is needed.
 3. Synthesize an answer grounded in wiki content. Use `[[wikilinks]]` as inline citations.
 4. If the wiki lacks coverage, say so explicitly: "The wiki doesn't have much on X. Want me to create a stub, or do you have a source to ingest?"
@@ -125,14 +125,14 @@ When the user wants to develop their own ideas:
 2. Have a back-and-forth with the user to develop the argument.
 3. Write the result as a synthesis page in `wiki/synthesis/`.
 4. Link to all supporting concepts and sources.
-5. Update `index.md` and `log.md`.
+5. Update `wiki-index.md` and `log.md`.
 6. Commit with message: `synthesis: {page title}`.
 
 ### Lint
 
 When the user says "lint the wiki" or "health check":
 
-1. Read `index.md` and scan all wiki pages.
+1. Read `wiki-index.md` and scan all wiki pages.
 2. Check for:
    - **Contradictions** — pages making conflicting claims without acknowledging the disagreement
    - **Stale stubs** — stubs that could be fleshed out from existing sources
@@ -167,7 +167,7 @@ This creates a markdown file in `raw/`. Then ingest it normally.
 ## Important Rules
 
 1. NEVER modify files in `raw/`. They are immutable sources of truth.
-2. ALWAYS update `index.md` when creating new pages.
+2. ALWAYS update `wiki-index.md` when creating new pages.
 3. ALWAYS append to `log.md` on ingest, filed query, or lint.
 4. ALWAYS use wikilinks `[[page-name]]` when referencing other wiki pages.
 5. ALWAYS include frontmatter on every wiki page.
