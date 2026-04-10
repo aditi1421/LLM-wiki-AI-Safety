@@ -83,11 +83,11 @@ export default function Graph({ data, height = 600, hero = false }: { data: Grap
     function simulate() {
       if (settled) return;
       tick++;
-      const alpha = Math.max(0.01, 0.3 * Math.pow(0.99, tick));
+      const alpha = Math.max(0.01, 0.3 * Math.pow(0.995, tick));
       if (alpha < 0.015) settled = true;
 
-      const repulsion = 8000;
-      const attraction = 0.003;
+      const repulsion = 40000;
+      const attraction = 0.001;
 
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
@@ -118,15 +118,15 @@ export default function Graph({ data, height = 600, hero = false }: { data: Grap
       }
 
       for (const node of nodes) {
-        node.vx! += (w / 2 - node.x!) * 0.0008;
-        node.vy! += (h / 2 - node.y!) * 0.0008;
+        node.vx! += (w / 2 - node.x!) * 0.0003;
+        node.vy! += (h / 2 - node.y!) * 0.0003;
         node.x! += node.vx! * alpha;
         node.y! += node.vy! * alpha;
-        node.vx! *= 0.85;
-        node.vy! *= 0.85;
-        // Keep in bounds
-        node.x = Math.max(60, Math.min(w - 60, node.x!));
-        node.y = Math.max(40, Math.min(h - 40, node.y!));
+        node.vx! *= 0.82;
+        node.vy! *= 0.82;
+        // Keep in bounds with generous padding
+        node.x = Math.max(100, Math.min(w - 100, node.x!));
+        node.y = Math.max(60, Math.min(h - 60, node.y!));
       }
     }
 

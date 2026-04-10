@@ -47,7 +47,7 @@ export default async function Home() {
 
         {/* Graph — hero sized */}
         <div className="animate-fade-up delay-1" style={{ position: 'relative', zIndex: 1 }}>
-          <Graph data={graphData} height={500} hero />
+          <Graph data={graphData} height={600} hero />
         </div>
 
         {/* Legend overlaid on graph */}
