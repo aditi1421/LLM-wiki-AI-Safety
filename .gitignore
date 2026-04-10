@@ -10,3 +10,7 @@ Thumbs.db
 
 # Temporary
 *.tmp
+
+# Next.js
+.next/
+out/
