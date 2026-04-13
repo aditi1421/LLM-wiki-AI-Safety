@@ -88,7 +88,8 @@ The key insight: LLMs handle the tedious part of knowledge management — updati
 The wiki is in its early stages. Current sources and topics include:
 
 - **The Intelligence Curse** (Drago, 2025) — AGI as resource rather than tool, rentier state dynamics, economic displacement
-- Concepts: intelligence curse, resource curse, rentier states, economic displacement by AI, intent alignment
+- **[Gradual Disempowerment](https://gradual-disempowerment.ai)** (Kulveit et al., 2025) — incremental AI capabilities eroding human agency across economy, culture, and governance
+- Concepts: intelligence curse, resource curse, rentier states, economic displacement by AI, intent alignment, gradual disempowerment
 - Debates: Will AGI benefit ordinary people?
 
 ## Contributing

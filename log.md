@@ -16,3 +16,8 @@ Pages updated: (none — first ingest)
 Source: raw/davidson-2023-compute-centric-takeoff.md
 Pages created: ai-takeoff-speeds, compute-centric-framework, intelligence-explosion, superintelligence, davidson-2023-compute-centric-takeoff, is-ai-takeoff-fast-or-slow
 Pages updated: intent-alignment, economic-displacement-by-ai, will-agi-benefit-ordinary-people, map-ai-economics
+
+## [2026-04-13] ingest | Gradual Disempowerment
+Source: https://gradual-disempowerment.ai (arXiv 2501.16946)
+Pages created: kulveit-2025-gradual-disempowerment, gradual-disempowerment
+Pages updated: intent-alignment, will-agi-benefit-ordinary-people

@@ -15,6 +15,7 @@ Master catalog of all pages. Updated by Claude on every ingest.
 - [[compute-centric-framework]] — quantitative model for AI progress via compute and algorithms (draft)
 - [[intelligence-explosion]] — feedback loop where AI accelerates its own development (stub)
 - [[superintelligence]] — AI that significantly surpasses humans at all tasks (stub)
+- [[gradual-disempowerment]] — incremental AI capabilities eroding human agency across institutions (draft)
 
 ## Entities
 
@@ -24,6 +25,7 @@ _No pages yet._
 
 - [[drago-2025-intelligence-curse]] — "The Intelligence Curse" by Luke Drago (LessWrong, Jan 2025)
 - [[davidson-2023-compute-centric-takeoff]] — "Compute-Centric Takeoff Speeds" by Tom Davidson (Alignment Forum, Jan 2023)
+- [[kulveit-2025-gradual-disempowerment]] — "Gradual Disempowerment" by Kulveit et al. (arXiv, 2025)
 
 ## Debates
 
