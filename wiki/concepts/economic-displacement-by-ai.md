@@ -7,6 +7,8 @@ updated: 2026-04-10
 sources: [drago-2025-intelligence-curse, davidson-2023-compute-centric-takeoff]
 related: [intelligence-curse, resource-curse, ai-takeoff-speeds, compute-centric-framework]
 status: draft
+confidence: medium
+tags: [economic-impact, agi, transformative-ai, foundational, well-established]
 ---
 
 # Economic Displacement by AI

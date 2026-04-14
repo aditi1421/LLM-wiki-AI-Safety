@@ -7,6 +7,8 @@ updated: 2026-04-10
 sources: [drago-2025-intelligence-curse]
 related: [resource-curse, rentier-state, economic-displacement-by-ai, intent-alignment]
 status: draft
+confidence: medium
+tags: [economic-impact, agi, foundational, well-established]
 ---
 
 # Intelligence Curse

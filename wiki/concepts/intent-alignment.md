@@ -7,6 +7,8 @@ updated: 2026-04-13
 sources: [drago-2025-intelligence-curse, davidson-2023-compute-centric-takeoff, kulveit-2025-gradual-disempowerment]
 related: [intelligence-curse, gradual-disempowerment, ai-takeoff-speeds, superintelligence]
 status: stub
+confidence: medium
+tags: [alignment, value-learning, corrigibility, foundational, well-established]
 ---
 
 # Intent Alignment

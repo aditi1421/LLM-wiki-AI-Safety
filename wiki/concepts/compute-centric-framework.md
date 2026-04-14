@@ -7,6 +7,8 @@ updated: 2026-04-10
 sources: [davidson-2023-compute-centric-takeoff]
 related: [ai-takeoff-speeds, intelligence-explosion, superintelligence]
 status: draft
+confidence: medium
+tags: [agi, transformative-ai, advanced, emerging]
 ---
 
 # Compute-Centric Framework

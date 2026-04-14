@@ -8,6 +8,8 @@ sources: [davidson-2023-compute-centric-takeoff]
 related: [ai-takeoff-speeds, compute-centric-framework, intelligence-explosion, superintelligence, intent-alignment]
 positions: [fast takeoff, slow takeoff, continuous but fast]
 status: draft
+confidence: medium
+tags: [existential-risk, agi, superintelligence, contested]
 ---
 
 # Is AI Takeoff Fast or Slow?

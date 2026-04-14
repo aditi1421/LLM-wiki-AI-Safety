@@ -8,6 +8,8 @@ sources: [drago-2025-intelligence-curse, kulveit-2025-gradual-disempowerment]
 related: [intelligence-curse, gradual-disempowerment, economic-displacement-by-ai, resource-curse, intent-alignment]
 positions: [default utopia, intelligence curse, gradual disempowerment, new jobs emerge]
 status: draft
+confidence: medium
+tags: [economic-impact, agi, governance, contested]
 ---
 
 # Will AGI Benefit Ordinary People?

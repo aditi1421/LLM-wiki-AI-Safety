@@ -13,6 +13,7 @@ aliases: []
 sources: []
 related: [drago-2025-intelligence-curse, intelligence-curse, intent-alignment, economic-displacement-by-ai, will-agi-benefit-ordinary-people]
 status: draft
+confidence: high
 ---
 
 # Gradual Disempowerment

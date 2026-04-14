@@ -7,6 +7,8 @@ updated: 2026-04-10
 sources: [drago-2025-intelligence-curse, davidson-2023-compute-centric-takeoff]
 related: [intelligence-curse, economic-displacement-by-ai, resource-curse, rentier-state, ai-takeoff-speeds, compute-centric-framework, superintelligence]
 status: stub
+confidence: low
+tags: [economic-impact, agi, transformative-ai, foundational]
 ---
 
 # Map: AI and Economics

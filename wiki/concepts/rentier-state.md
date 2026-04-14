@@ -7,6 +7,8 @@ updated: 2026-04-10
 sources: [drago-2025-intelligence-curse]
 related: [resource-curse, intelligence-curse]
 status: stub
+confidence: low
+tags: [economic-impact, state, foundational, well-established]
 ---
 
 # Rentier State

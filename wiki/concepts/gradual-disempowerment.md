@@ -7,6 +7,8 @@ updated: 2026-04-13
 sources: [kulveit-2025-gradual-disempowerment]
 related: [intelligence-curse, intent-alignment, economic-displacement-by-ai, superintelligence]
 status: draft
+confidence: medium
+tags: [existential-risk, governance, agi, emerging]
 ---
 
 # Gradual Disempowerment

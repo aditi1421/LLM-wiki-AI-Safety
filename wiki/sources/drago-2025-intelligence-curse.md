@@ -9,6 +9,8 @@ raw_file: raw/drago-2025-intelligence-curse.md
 tags: [intelligence-curse, resource-curse, rentier-state, economic-displacement, agi, labor-market]
 created: 2026-04-10
 updated: 2026-04-10
+status: mature
+confidence: high
 ---
 
 # The Intelligence Curse

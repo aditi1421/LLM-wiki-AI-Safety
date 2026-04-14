@@ -7,6 +7,8 @@ updated: 2026-04-10
 sources: [drago-2025-intelligence-curse]
 related: [rentier-state, intelligence-curse, economic-displacement-by-ai]
 status: draft
+confidence: medium
+tags: [economic-impact, state, foundational, well-established]
 ---
 
 # Resource Curse

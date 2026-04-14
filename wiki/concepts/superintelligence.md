@@ -7,6 +7,8 @@ updated: 2026-04-10
 sources: [davidson-2023-compute-centric-takeoff]
 related: [intelligence-explosion, ai-takeoff-speeds, intent-alignment]
 status: stub
+confidence: low
+tags: [existential-risk, superintelligence, foundational, speculative]
 ---
 
 # Superintelligence

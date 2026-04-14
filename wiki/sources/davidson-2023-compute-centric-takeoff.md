@@ -9,6 +9,8 @@ raw_file: raw/davidson-2023-compute-centric-takeoff.md
 tags: [takeoff-speeds, compute, agi-timelines, intelligence-explosion, bio-anchors, economic-impact]
 created: 2026-04-10
 updated: 2026-04-10
+status: mature
+confidence: high
 ---
 
 # What a Compute-Centric Framework Says About AI Takeoff Speeds

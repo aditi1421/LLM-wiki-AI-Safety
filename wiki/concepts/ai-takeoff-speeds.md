@@ -7,6 +7,8 @@ updated: 2026-04-10
 sources: [davidson-2023-compute-centric-takeoff]
 related: [compute-centric-framework, intelligence-explosion, superintelligence, intent-alignment, economic-displacement-by-ai]
 status: draft
+confidence: medium
+tags: [existential-risk, agi, superintelligence, foundational, contested]
 ---
 
 # AI Takeoff Speeds
